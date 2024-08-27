@@ -1,4 +1,4 @@
-changelog-config:
+changelog:
   exclude:
     labels:
       - ignore-for-release
