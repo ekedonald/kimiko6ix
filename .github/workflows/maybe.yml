@@ -6,28 +6,27 @@ on:
 
 jobs:
   deploy-pr:
-    # environment: 
-    #   name: proddde
-    #   url: ${{ steps.deploy.outputs.preview-url }}
+    environment: 
+      name: development
+      url: ${{ steps.deploy.outputs.preview-url }}
     runs-on: ubuntu-latest
     env:
-      SSH_USERNAME: ${{ secrets.SERVER_USERNAME }}
-      SSH_HOST: ${{ secrets.SERVER_HOST }}
-      SSH_PORT: ${{ secrets.SERVER_PORT }}
-      SSH_PRIVATE_KEY: ${{ secrets.SERVER_PRIVATE_KEY }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     steps:
       - name: Checkout to branch
         uses: actions/checkout@v4
       - id: deploy
         name: Pull Request Deploy
-        uses: hngprojects/pr-deploy@feat_private_key
+        uses: hngprojects/pr-deploy@sdev
         with:
           server_host: ${{ env.SSH_HOST }}
           server_username: ${{ env.SSH_USERNAME }}
-          # server_password: ${{ secrets.SERVER_PASSWORD }}
+          server_password: ${{ secrets.SERVER_PASSWORD }}
           server_port: ${{ env.SSH_PORT }}
-          server_private_key: ${{ env.SSH_PRIVATE_KEY }}
           comment: true
           context: '.'
           dockerfile: 'Dockerfile'
