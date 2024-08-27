@@ -41,18 +41,18 @@ jobs:
     - name: Extract files
       run: tar -xzf docker-files.tar.gz
 
-    - name: Deploy to server
-      env:
-        PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-        HOST: ${{ secrets.SERVER_HOST }}
-        USER: ${{ secrets.SERVER_USERNAME }}
-      run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        scp -i private_key -o StrictHostKeyChecking=no image.tar docker-compose.*.yml $USER@$HOST:~/deploy/
-        ssh -i private_key -o StrictHostKeyChecking=no $USER@$HOST '
-          cd ~/deploy
-          docker load < backend_image.tar
-          echo "CI_COMMIT_SHA=${{ github.sha }}" > .env
-          docker-compose -f docker-compose.yml up -d
-        '
-        rm -f private_key
+    # - name: Deploy to server
+    #   env:
+    #     PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+    #     HOST: ${{ secrets.SERVER_HOST }}
+    #     USER: ${{ secrets.SERVER_USERNAME }}
+    #   run: |
+    #     echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+    #     scp -i private_key -o StrictHostKeyChecking=no image.tar docker-compose.*.yml $USER@$HOST:~/deploy/
+    #     ssh -i private_key -o StrictHostKeyChecking=no $USER@$HOST '
+    #       cd ~/deploy
+    #       docker load < backend_image.tar
+    #       echo "CI_COMMIT_SHA=${{ github.sha }}" > .env
+    #       docker-compose -f docker-compose.yml up -d
+    #     '
+    #     rm -f private_key
