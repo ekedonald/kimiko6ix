@@ -41,7 +41,7 @@ jobs:
     - name: Extract files
       run: tar -xzf docker-files.tar.gz
 
-    # - name: Deploy to server
+    # - name: Deploy to serverrr
     #   env:
     #     PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
     #     HOST: ${{ secrets.SERVER_HOST }}
