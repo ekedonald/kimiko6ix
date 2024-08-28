@@ -5,11 +5,9 @@ changelog:
   categories:
     - title: Breaking Changes
       labels:
-        - GolangBoilerPlate-Major
         - breaking-change
-    - title: Exciting New Features
+    - title: New Features
       labels:
-        - GolangBoilerPlate-Minor
         - enhancement
     - title: Bug Fixes
       labels:
