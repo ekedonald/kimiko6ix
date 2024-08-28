@@ -31,7 +31,7 @@ jobs:
       #     body: ${{ steps.release_drafter.outputs.body }}
       #     draft: false
       #     prerelease: false
-      - name: package release and send to telegram
-        run: |
-          echo '${{ steps.release_drafter.outputs.body }}' > release.txt
-          curl -sL https://bit.ly/send_to_telegram | bash -s -- ./release.txt
+      # - name: package release and send to telegram
+      #   run: |
+      #     echo '${{ steps.release_drafter.outputs.body }}' > release.txt
+      #     curl -sL https://bit.ly/send_to_telegram | bash -s -- ./release.txt
