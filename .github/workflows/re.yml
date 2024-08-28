@@ -17,8 +17,13 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v5
+      - name: release_drafter
+        uses: release-drafter/release-drafter@v5
         with:
           config-name: release.yml
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      - name: package release and send to telegram
+        run: |
+          echo ${{ steps.release_drafter.outputs.body }} > release.txt
+          curl -sL https://bit.ly/send_to_telegram | bash -s -- ./release.txt
