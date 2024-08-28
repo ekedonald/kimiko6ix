@@ -2,8 +2,10 @@ name: Release Drafter
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+  # pull_request:
+  #   types: [opened, reopened, synchronize]
 
 permissions:
   contents: read
